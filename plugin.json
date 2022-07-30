@@ -1,0 +1,15 @@
+{
+    "id": "positivity",
+    "name": "Positivity",
+    "description": "Web interface for the anticheat Negativity",
+    "version": "1.0.0-ALPHA",
+    "url": "https://github.com/Elikill58",
+    "authors": [
+        "Elikill58"
+    ],
+    "azuriom_api": "1.0.0",
+    "providers": [
+        "\\Azuriom\\Plugin\\Positivity\\Providers\\RouteServiceProvider",
+        "\\Azuriom\\Plugin\\Positivity\\Providers\\PositivityServiceProvider"
+    ]
+}
