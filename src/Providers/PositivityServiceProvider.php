@@ -8,6 +8,7 @@ use Azuriom\Models\Permission;
 use Azuriom\Plugin\Positivity\Models\Setting;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class PositivityServiceProvider extends BasePluginServiceProvider
 {
@@ -47,8 +48,11 @@ class PositivityServiceProvider extends BasePluginServiceProvider
         ]);
 
         if (Schema::hasTable('positivity_settings')) {
-            if (!Setting::first()) {
+            $set = Setting::first();
+            if (!$set) {
                 Setting::create();
+            } else {
+                $this->changeDatabase($set);
             }
         }
 
@@ -84,5 +88,21 @@ class PositivityServiceProvider extends BasePluginServiceProvider
                 'route'      => 'positivity.admin.index', // Route de la page
             ],
         ];
+    }
+
+    function isSet($smt) {
+        return isset($smt) && $smt != null && $smt != '';
+    }
+
+    protected function changeDatabase(Setting $setting) {
+        config([
+            'database.connections.positivity.driver' => 'mysql',
+            'database.connections.positivity.host' => isSet($setting->stats_host) ? $setting->stats_host : env('DB_HOST', '127.0.0.1'),
+            'database.connections.positivity.port' => isSet($setting->stats_port) ? $setting->stats_port : env('DB_PORT', '3306'),
+            'database.connections.positivity.username' => isSet($setting->stats_username) ? $setting->stats_username : env('DB_USERNAME', 'root'),
+            'database.connections.positivity.password' => isSet($setting->stats_password) ? $setting->stats_password : env('DB_PASSWORD', ''),
+            'database.connections.positivity.database' => isSet($setting->stats_database) ? $setting->stats_database : env('DB_DATABASE', '')
+        ]);
+        DB::purge();
     }
 }

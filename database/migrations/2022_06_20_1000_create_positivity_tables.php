@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('positivity_settings', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('per_page')->default(10);
             $table->string('stats_host')->nullable();
             $table->unsignedInteger('stats_port')->nullable();
             $table->string('stats_username')->nullable();

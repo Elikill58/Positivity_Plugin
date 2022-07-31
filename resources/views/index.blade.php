@@ -2,17 +2,14 @@
 
 @section('title', 'Stats')
 
-@push('styles')
-    <link href="{{ plugin_asset('playerstats', 'css/style.css') }} " rel="stylesheet">
-@endpush
-
 @section('content')
+    @include("positivity::header")
     <div class="row" id="stats">
         <div class="col-12 py-3">
             @if(app('request')->input('error') != null)
             <div class="card">
                 <div class="card-body">
-                    <p class="text-warning">{{ trans('playerstats::messages.error.' . app('request')->input('error')) }}</p>
+                    <p class="text-warning">{{ trans('positivity::messages.error.' . app('request')->input('error')) }}</p>
                 </div>
             </div>
             @endif
@@ -37,7 +34,7 @@
 @push('scripts')
     <script>
         function checkValidation(name) {
-            window.location.href = "{{ route('playerstats.index', ['uuid' => 'UUID']) }}".replace('UUID', name);
+            window.location.href = "{{ route('positivity.index', ['uuid' => 'UUID']) }}".replace('UUID', name);
             return false;
         }
     </script>

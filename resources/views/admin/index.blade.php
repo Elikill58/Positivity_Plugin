@@ -14,7 +14,7 @@
                     <form action="{{ route('positivity.admin.setting.update', $setting) }}" method="POST">
                         <h3>{{ trans('positivity::admin.setting.title') }}</h3>
                         @method('PUT')
-                        @include('positivity::admin.settings._form')
+                        @include('positivity::admin._form')
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-save"></i> {{ trans('messages.actions.save') }}
                         </button>

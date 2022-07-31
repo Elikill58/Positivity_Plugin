@@ -1,6 +1,7 @@
 <?php
 
 use Azuriom\Plugin\Positivity\Controllers\HomeController;
+use Azuriom\Plugin\Positivity\Controllers\AccountsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::get('/accounts', [AccountsController::class, 'index'])->name('index');
+Route::resource('/accounts', AccountsController::class)->except('index');

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Settings
+ * Class Account
  *
  * @property integer        $id
  * @property string         $name
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package Azuriom\Plugin\Positivity\Models
  */
-class Setting extends Model
+class Accounts extends Model
 {
     use HasTablePrefix;
 
@@ -27,16 +27,16 @@ class Setting extends Model
      *
      * @var string
      */
-    protected $prefix = 'positivity_';
+    protected $prefix = 'negativity_';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['per_page', 'stats_host', 'stats_port', 'stats_username', 'stats_password', 'stats_database'];
+    protected $fillable = ['id', 'playername', 'language', 'minerate_full_mined', 'most_clicks_per_second', 'violations_by_cheat', 'creation_time', 'reports', 'ip', 'show_alert'];
 
     protected $casts = [
-        'per_page' => 'integer'
+        'id' => 'string'
     ];
 }
