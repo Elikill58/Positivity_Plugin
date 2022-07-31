@@ -4,6 +4,7 @@ return [
     'title' => 'Positivity',
     'cheat' => 'Cheat',
     'amount' => 'Quantité',
+    'created_at' => 'Date de création',
     'minerate' => [
         'index' => 'Minerate',
         'all' => 'Tout les blocs',
@@ -27,7 +28,11 @@ return [
         'most_clicks' => 'Meilleur click/s',
         'violations' => 'Violations',
         'verifications' => 'Vérifications',
-        'created_at' => 'Date de création',
+    ],
+    'verifications' => [
+        'list' => 'Verifications',
+        'started_by' => 'Démarré par',
+        'player_version' => 'Version du joueur'
     ],
     'error' => [
         'not-found' => 'Demande introuvable.',

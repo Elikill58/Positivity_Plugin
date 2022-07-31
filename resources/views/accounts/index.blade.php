@@ -26,8 +26,7 @@ $haveMore = count($accounts) == $perPage;
 			                    <th scope="col">{{ trans('positivity::messages.accounts.most_clicks') }}</th>
 			                    <th scope="col">{{ trans('positivity::messages.accounts.violations') }}</th>
 			                    <th scope="col">{{ trans('positivity::messages.accounts.verifications') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.accounts.created_at') }}</th>
-			                    <th scope="col">{{ trans('messages.fields.action') }}</th>
+			                    <th scope="col">{{ trans('positivity::messages.created_at') }}</th>
 			                </tr>
 			                </thead>
 			                <tbody class="sortable" id="games">
@@ -56,9 +55,6 @@ $haveMore = count($accounts) == $perPage;
 			                        </td>
 			                        <td>
 					                    {{ $account->creation_time }}
-			                        </td>
-			                        <td>
-					                    rien
 			                        </td>
 			                    </tr>
 			                @empty
