@@ -5,6 +5,7 @@ return [
     'cheat' => 'Cheat',
     'amount' => 'Quantité',
     'created_at' => 'Date de création',
+    'more' => 'Plus d\'infos',
     'minerate' => [
         'index' => 'Minerate',
         'all' => 'Tout les blocs',
@@ -30,6 +31,7 @@ return [
         'verifications' => 'Vérifications',
     ],
     'verifications' => [
+        'index' => 'Verification',
         'list' => 'Verifications',
         'started_by' => 'Démarré par',
         'player_version' => 'Version du joueur'

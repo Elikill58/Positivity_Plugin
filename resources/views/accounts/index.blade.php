@@ -27,6 +27,7 @@ $haveMore = count($accounts) == $perPage;
 			                    <th scope="col">{{ trans('positivity::messages.accounts.violations') }}</th>
 			                    <th scope="col">{{ trans('positivity::messages.accounts.verifications') }}</th>
 			                    <th scope="col">{{ trans('positivity::messages.created_at') }}</th>
+			                    <th scope="col">{{ trans('positivity::messages.more') }}</th>
 			                </tr>
 			                </thead>
 			                <tbody class="sortable" id="games">
@@ -55,6 +56,9 @@ $haveMore = count($accounts) == $perPage;
 			                        </td>
 			                        <td>
 					                    {{ $account->creation_time }}
+			                        </td>
+			                        <td>
+					                    <a href="{{ route('positivity.accounts.show', $account->id) }}">{{ trans('positivity::messages.more') }}</a>
 			                        </td>
 			                    </tr>
 			                @empty
