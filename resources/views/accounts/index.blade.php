@@ -3,9 +3,10 @@
 @section('title', 'Stats')
 
 <?php
-$page = isset(request()->page) ? request()->page : 0;
+$page = isset(request()->page) ? request()->page - 1 : 0;
 $perPage = $setting->per_page;
 $accounts = DB::connection("positivity")->select("SELECT * FROM negativity_accounts LIMIT " . $perPage . " OFFSET " . ($page * $perPage));
+$haveMore = count($accounts) == $perPage;
 ?>
 
 @section('content')
@@ -73,7 +74,7 @@ $accounts = DB::connection("positivity")->select("SELECT * FROM negativity_accou
 			                    </tr>
 			                @empty
 			                    <tr>
-			                        <td>Vous n'avez pas de jeux</td>
+			                        <td colspan="8">{{ trans('positivity::messages.accounts.empty') }}</td>
 			                    </tr>
 			                @endforelse
 			                </tbody>
@@ -81,6 +82,7 @@ $accounts = DB::connection("positivity")->select("SELECT * FROM negativity_accou
 			        </div>
 			    </div>
 			</div>
+			@include("positivity::pager")
 		</div>
     </div>
 @endsection
