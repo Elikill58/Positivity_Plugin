@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Stats')
+@section('title', trans('positivity::messages.accounts.list'))
 
 <?php
 $page = isset(request()->page) ? request()->page - 1 : 0;
@@ -11,7 +11,7 @@ $haveMore = count($accounts) == $perPage;
 
 @section('content')
 	@include("positivity::header")
-    <div class="row" id="stats">
+    <div class="row" id="positivity-accounts">
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
@@ -46,18 +46,7 @@ $haveMore = count($accounts) == $perPage;
 					                    {{ $account->most_clicks_per_second }}
 			                        </td>
 			                        <td>
-					                    <?php
-								        $nb = 0;
-								        foreach (explode(";", $account->violations_by_cheat) as $allCheat) {
-								            $tab = explode("=", $allCheat, 2);
-								            foreach ($tab as $cheat) {
-								                if(isset($tab[1]) && is_numeric($tab[1])) {
-								                    $nb = $nb + $tab[1];
-								                }
-								            }
-								        }
-								        echo $nb;
-					                    ?>
+					                    {{ \Azuriom\Plugin\Positivity\Models\Accounts::countAllViolation($account->violations_by_cheat) }}
 			                        </td>
 			                        <td>
 					                    <?php

@@ -2,6 +2,7 @@
 
 use Azuriom\Plugin\Positivity\Controllers\HomeController;
 use Azuriom\Plugin\Positivity\Controllers\AccountsController;
+use Azuriom\Plugin\Positivity\Controllers\ErrorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/accounts', [AccountsController::class, 'index'])->name('index');
+Route::get('/accounts/{uuid?}', [AccountsController::class, 'show'])->name('show');
 Route::resource('/accounts', AccountsController::class)->except('index');
+
+Route::get('/error/not-found', [ErrorController::class, 'notFound'])->name('notFound');

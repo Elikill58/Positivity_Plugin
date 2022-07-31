@@ -39,4 +39,51 @@ class Setting extends Model
     protected $casts = [
         'per_page' => 'integer'
     ];
+
+
+    public function getCheatName($key) {
+        $cheatPerName = array("aimbot" => "AimBot",
+            "airjump" => "AirJump",
+            "airplace" => "AirPlace",
+            "antiknockback" => "AntiKnockback",
+            "antipotion" => "AntiPotion",
+            "autoclick" => "AutoClick",
+            "autosteal" => "AutoSteal",
+            "blink" => "Blink",
+            "chat" => "Chat",
+            "checkmanager" => "CheckManager",
+            "critical" => "Critical",
+            "elytrafly" => "ElytraFly",
+            "fastbow" => "FastBow",
+            "fasteat" => "FastEat",
+            "fastladder" => "FastLadder",
+            "fastplace" => "FastPlace",
+            "faststairs" => "FastStairs",
+            "fly" => "Fly",
+            "forcefield" => "ForceField",
+            "groundspoof" => "GroundSpoof",
+            "incorrectpacket" => "IncorrectPacket",
+            "inventorymove" => "InventoryMove",
+            "jesus" => "Jesus",
+            "nofall" => "NoFall",
+            "nopitchlimit" => "NoPitchLimit",
+            "noslowdown" => "NoSlowDown",
+            "noweb" => "NoWeb",
+            "nuker" => "Nuker",
+            "phase" => "Phase",
+            "pingspoof" => "PingSpoof",
+            "reach" => "Reach",
+            "regen" => "Regen",
+            "scaffold" => "Scaffold",
+            "sneak" => "Sneak",
+            "speed" => "Speed",
+            "spider" => "Spider",
+            "step" => "Step",
+            "strafe" => "Strafe",
+            "superknockback" => "SuperKnockback",
+            "timer" => "Timer",
+            "xray" => "XRay"
+        );
+        return isset($cheatPerName[$key]) ? $cheatPerName[$key] : $key . "?";
+    }
 }

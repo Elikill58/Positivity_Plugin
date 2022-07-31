@@ -34,9 +34,22 @@ class Accounts extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'playername', 'language', 'minerate_full_mined', 'most_clicks_per_second', 'violations_by_cheat', 'creation_time', 'reports', 'ip', 'show_alert'];
+    protected $fillable = ['id', 'playername', 'language', 'minerate_full_mined', 'minerate', 'most_clicks_per_second', 'violations_by_cheat', 'creation_time', 'reports', 'ip', 'show_alert'];
 
     protected $casts = [
         'id' => 'string'
     ];
+
+    public static function countAllViolation($violations_by_cheat){
+        $nb = 0;
+        foreach (explode(";", $violations_by_cheat) as $allCheat) {
+            $tab = explode("=", $allCheat, 2);
+            foreach ($tab as $cheat) {
+                if(isset($tab[1]) && is_numeric($tab[1])) {
+                    $nb = $nb + $tab[1];
+                }
+            }
+        }
+        return $nb;
+    }
 }

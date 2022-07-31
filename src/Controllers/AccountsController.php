@@ -32,6 +32,17 @@ class AccountsController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($uuid)
+    {
+        $setting = Setting::first();
+        return view('positivity::accounts.show', compact('uuid', 'setting'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param \Azuriom\Plugin\Positivity\Requests\SettingRequest $request
