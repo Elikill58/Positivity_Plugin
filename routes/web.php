@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/accounts', [AccountsController::class, 'index'])->name('index');
+Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
 Route::get('/accounts/{uuid?}', [AccountsController::class, 'show'])->name('show');
 Route::resource('/accounts', AccountsController::class)->except('index');
 

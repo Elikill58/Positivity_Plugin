@@ -4,7 +4,7 @@
 
 <div class="row">
     @foreach(array("accounts") as $name)
-        <a class="col-3 py-3" href="./{{ $name }}">
+        <a class="col-3 py-3" href="{{ route('positivity.' . $name) }}">
             <div class="btn btn-primary">
                 {{ trans('positivity::messages.' . $name . '.list') }}
             </div>
