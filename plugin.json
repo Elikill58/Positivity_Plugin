@@ -2,7 +2,7 @@
     "id": "positivity",
     "name": "Positivity",
     "description": "Web interface for the anticheat Negativity",
-    "version": "1.0.0-ALPHA",
+    "version": "1.0.0",
     "url": "https://github.com/Elikill58",
     "authors": [
         "Elikill58"
