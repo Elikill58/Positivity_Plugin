@@ -17,7 +17,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <label class="form-label" for="settingEffect">{{ trans('messages.fields.name') }}</label>
+                    <label class="form-label" for="playername">{{ trans('messages.fields.name') }}</label>
                     <input type="text" class="form-control" id="playername" name="playername" required>
                 </div>
                 <div class="card-footer">
@@ -34,7 +34,7 @@
 @push('scripts')
     <script>
         function checkValidation(name) {
-            window.location.href = "{{ route('positivity.index', ['uuid' => 'UUID']) }}".replace('UUID', name);
+            window.location.href = "{{ route('positivity.accounts.show', ['account' => 'UUID']) }}".replace('UUID', name);
             return false;
         }
     </script>
