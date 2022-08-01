@@ -14,6 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->authorize("positivity.accounts.show");
         $settings = Setting::first();
         return view('positivity::index', compact('settings'));
     }

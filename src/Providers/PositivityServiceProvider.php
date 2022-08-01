@@ -57,7 +57,9 @@ class PositivityServiceProvider extends BasePluginServiceProvider
         }
 
         Permission::registerPermissions([
-            'positivity.admin' => 'positivity::admin.permission',
+            'positivity.admin' => 'positivity::permissions.admin',
+            'positivity.accounts.show' => 'positivity::permissions.accounts.show',
+            'positivity.verifications.show' => 'positivity::permissions.verifications.show',
         ]);
     }
 

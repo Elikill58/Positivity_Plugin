@@ -17,6 +17,7 @@ class AccountsController extends Controller
      */
     public function index()
     {
+        $this->authorize("positivity.accounts.show");
         $setting = Setting::first();
         return view('positivity::accounts.index', compact('setting'));
     }
@@ -38,6 +39,7 @@ class AccountsController extends Controller
      */
     public function show($uuid)
     {
+        $this->authorize("positivity.accounts.show");
         $setting = Setting::first();
         return view('positivity::accounts.show', compact('uuid', 'setting'));
     }
@@ -51,6 +53,7 @@ class AccountsController extends Controller
      */
     public function store(AccountsRequest $request)
     {
+        $this->authorize("positivity.admin");
         $account = Accounts::create($request->validated());
 
         return redirect()->route('positivity.accounts.index')
@@ -64,6 +67,7 @@ class AccountsController extends Controller
      */
     public function edit(Accounts $account)
     {
+        $this->authorize("positivity.admin");
         return view('positivity::accounts.edit', compact('account'));
     }
 
@@ -77,6 +81,7 @@ class AccountsController extends Controller
      */
     public function update(AccountsRequest $request, Accounts $account)
     {
+        $this->authorize("positivity.admin");
         $account->update($request->validated());
 
         return redirect()->route('positivity.accounts.index')
@@ -94,6 +99,7 @@ class AccountsController extends Controller
      */
     public function destroy(Accounts $account)
     {
+        $this->authorize("positivity.admin");
         $account->destroy();
 
         return redirect()->route('positivity.accounts.index')

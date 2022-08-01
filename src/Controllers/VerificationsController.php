@@ -17,6 +17,7 @@ class VerificationsController extends Controller
      */
     public function index()
     {
+        $this->authorize("positivity.verifications.show");
         $setting = Setting::first();
         return view('positivity::verifications.index', compact('setting'));
     }
@@ -28,7 +29,7 @@ class VerificationsController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize("positivity.admin");
     }
 
     /**
@@ -38,6 +39,7 @@ class VerificationsController extends Controller
      */
     public function show($uuid)
     {
+        $this->authorize("positivity.verifications.show");
         $setting = Setting::first();
         return view('positivity::verifications.show', compact('uuid', 'setting'));
     }
@@ -51,6 +53,7 @@ class VerificationsController extends Controller
      */
     public function store(VerificationsRequest $request)
     {
+        $this->authorize("positivity.admin");
         $account = Verifications::create($request->validated());
 
         return redirect()->route('positivity.verifications.index')
@@ -64,6 +67,7 @@ class VerificationsController extends Controller
      */
     public function edit(Verifications $account)
     {
+        $this->authorize("positivity.admin");
         return view('positivity::verifications.edit', compact('account'));
     }
 
@@ -77,6 +81,7 @@ class VerificationsController extends Controller
      */
     public function update(VerificationsRequest $request, Verifications $account)
     {
+        $this->authorize("positivity.admin");
         $account->update($request->validated());
 
         return redirect()->route('positivity.verifications.index')
@@ -94,6 +99,7 @@ class VerificationsController extends Controller
      */
     public function destroy(Verifications $account)
     {
+        $this->authorize("positivity.admin");
         $account->destroy();
 
         return redirect()->route('positivity.verifications.index')
