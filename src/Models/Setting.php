@@ -46,7 +46,11 @@ class Setting extends Model
     public function hasBans() {
         $this->changeDatabase();
         if($this->hasBan == null) {
-            $this->hasBan = count(DB::connection("positivity")->select("SELECT version FROM negativity_migrations_history WHERE subsystem LIKE ? ORDER BY version DESC", ['bans/%'])) > 0;
+            try {
+                $this->hasBan = count(DB::connection("positivity")->select("SELECT version FROM negativity_migrations_history WHERE subsystem LIKE ? ORDER BY version DESC", ['bans/%'])) > 0;
+            } catch (\Exception $e) {
+                $this->hasBan = false;
+            }
         }
         return $this->hasBan;
     }

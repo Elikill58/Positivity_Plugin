@@ -5,6 +5,8 @@ namespace Azuriom\Plugin\Positivity\Controllers\Admin;
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Plugin\Positivity\Models\Setting;
 use Azuriom\Plugin\Positivity\Requests\SettingRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -83,5 +85,22 @@ class SettingController extends Controller
     public function destroy(Setting $setting)
     {
         //
+    }
+
+    public function checkDatabase(Request $request) {
+        try {
+            config([
+                'database.connections.positivity-test.driver' => 'mysql',
+                'database.connections.positivity-test.host' => isSet($request->stats_host) ? $request->stats_host : env('DB_HOST', '127.0.0.1'),
+                'database.connections.positivity-test.port' => isSet($request->stats_port) ? $request->stats_port : env('DB_PORT', '3306'),
+                'database.connections.positivity-test.username' => isSet($request->stats_username) ? $request->stats_username : env('DB_USERNAME', 'root'),
+                'database.connections.positivity-test.password' => isSet($request->stats_password) ? $request->stats_password : env('DB_PASSWORD', ''),
+                'database.connections.positivity-test.database' => isSet($request->stats_database) ? $request->stats_database : env('DB_DATABASE', '')
+            ]);
+            DB::purge();
+            return json_encode(array("good" => count(DB::connection("positivity-test")->select("SELECT * FROM negativity_migrations_history")) > 0));
+        } catch (\Exception $e) {
+            return json_encode(array("good" => 0, "error" => $e->getMessage()));
+        }
     }
 }
