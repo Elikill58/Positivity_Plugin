@@ -1,7 +1,7 @@
 <?php
-$result = DB::connection("positivity")->select("SELECT * FROM negativity_verifications WHERE id = ?", [$uuid]);
-if(isset($result) && count($result) > 0) {
-	$verif = $result[0];
+$result = \Azuriom\Plugin\Positivity\Models\Verifications::on("positivity")->where("id", "=", $uuid)->first();
+if($result) {
+	$verif = $result;
 } else {
 	?>
     @include("positivity::error.not-found");
@@ -25,13 +25,13 @@ if(isset($result) && count($result) > 0) {
 	                    <div class="text-center" style="width: 30%;">
                     		<h3>{{ trans('positivity::messages.verifications.index') }}</h3>
 	                    	<img src="https://crafatar.com/avatars/{{ $verif->uuid }}">
-						    <a href="{{ route('positivity.accounts.show', ['account' => $verif->uuid]) }}"><h2>{{ $setting->getPlayerName($verif->uuid) }}</h2></a>
+						    <a href="{{ route('positivity.accounts.show', ['account' => $verif->uuid]) }}"><h2>{{ $verif->getPlayerName() }}</h2></a>
 						    <p>{{ trans('positivity::messages.verifications.started_by') . " " . $verif->startedBy }}</p>
 						    <p>{{ $verif->creation_time }}</p>
 	                    </div>
 
 	                    <div style="width: 70%;">
-	                        {!! $setting->addColorFromResult($verif->result) !!}
+	                        {!! $verif->addColorFromResult() !!}
 				        </div>
 				    </div>
 	            </div>

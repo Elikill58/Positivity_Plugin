@@ -40,9 +40,9 @@ class Accounts extends Model
         'id' => 'string'
     ];
 
-    public static function countAllViolation($violations_by_cheat){
+    public function countAllViolation(){
         $nb = 0;
-        foreach (explode(";", $violations_by_cheat) as $allCheat) {
+        foreach (explode(";", $this->violations_by_cheat) as $allCheat) {
             $tab = explode("=", $allCheat, 2);
             foreach ($tab as $cheat) {
                 if(isset($tab[1]) && is_numeric($tab[1])) {

@@ -1,8 +1,7 @@
 <?php
 $isValidUUID = preg_match('/^\{?[A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12}\}?$/', strtoupper($uuid));
-$result = DB::connection("positivity")->select("SELECT * FROM negativity_accounts WHERE " . ($isValidUUID ? "id" : "playername") . " = ?", [$uuid]);
-if(isset($result) && count($result) > 0) {
-	$account = $result[0];
+$account = \Azuriom\Plugin\Positivity\Models\Accounts::on("positivity")->where($isValidUUID ? "id" : "playername", "=", $uuid)->first();
+if(isset($account)) {
     $uuid = $account->id;
     $name = $account->playername;
 } else {
@@ -73,7 +72,7 @@ foreach (explode(";", $account->minerate) as $allMinerate) {
                         <table class="table">
 	                        <?php
 	                        $allViolationsSplitted = explode(";", $account->violations_by_cheat);
-	                        $nbAllViolations = \Azuriom\Plugin\Positivity\Models\Accounts::countAllViolation($account->violations_by_cheat);
+	                        $nbAllViolations = $account->countAllViolation();
 	                        ?>
 	                        <thead>
 	                            <tr>

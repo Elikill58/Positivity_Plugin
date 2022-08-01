@@ -5,7 +5,7 @@
 <?php
 $page = isset(request()->page) ? request()->page - 1 : 0;
 $perPage = $setting->per_page;
-$accounts = DB::connection("positivity")->select("SELECT * FROM negativity_accounts LIMIT " . $perPage . " OFFSET " . ($page * $perPage));
+$accounts = \Azuriom\Plugin\Positivity\Models\Accounts::on("positivity")->limit($perPage)->offset($page * $perPage)->get();
 $haveMore = count($accounts) == $perPage;
 ?>
 
@@ -46,7 +46,7 @@ $haveMore = count($accounts) == $perPage;
 					                    {{ $account->most_clicks_per_second }}
 			                        </td>
 			                        <td>
-					                    {{ \Azuriom\Plugin\Positivity\Models\Accounts::countAllViolation($account->violations_by_cheat) }}
+					                    {{ $account->countAllViolation() }}
 			                        </td>
 			                        <td>
 					                    <?php
@@ -75,12 +75,3 @@ $haveMore = count($accounts) == $perPage;
 		</div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        function checkValidation(name) {
-            window.location.href = "{{ route('positivity.index', ['uuid' => 'UUID']) }}".replace('UUID', name);
-            return false;
-        }
-    </script>
-@endpush

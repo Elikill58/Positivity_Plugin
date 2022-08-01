@@ -5,7 +5,7 @@
 <?php
 $page = isset(request()->page) ? request()->page - 1 : 0;
 $perPage = $setting->per_page;
-$verifications = DB::connection("positivity")->select("SELECT * FROM negativity_verifications LIMIT " . $perPage . " OFFSET " . ($page * $perPage));
+$verifications = \Azuriom\Plugin\Positivity\Models\Verifications::on("positivity")->limit($perPage)->offset($page * $perPage)->get();// DB::connection("positivity")->select("SELECT * FROM negativity_verifications LIMIT " . $perPage . " OFFSET " . ($page * $perPage));
 $haveMore = count($verifications) == $perPage;
 
 $namePerUuid = array();
@@ -33,13 +33,13 @@ $namePerUuid = array();
 			                @forelse($verifications as $verif)
 			                    <tr class="sortable-dropdown tag-parent" data-verif-id="{{ $verif->id }}">
 			                        <td>
-					                    {{ $setting->getPlayerName($verif->uuid) }}
+					                    {{ $verif->getPlayerName() }}
 			                        </td>
 			                        <td>
 					                    {{ $verif->startedBy }}
 			                        </td>
 			                        <td>
-					                    {{ $setting->parseVersionName($verif->player_version) }}
+					                    {{ $verif->parseVersionName() }}
 			                        </td>
 			                        <td>
 					                    {{ $verif->creation_time }}
