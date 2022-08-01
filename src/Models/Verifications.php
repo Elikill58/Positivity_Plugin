@@ -6,6 +6,7 @@ use Azuriom\Models\Traits\HasTablePrefix;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Azuriom\Plugin\Positivity\Models\Setting;
 
 /**
  * Class Verifications
@@ -41,22 +42,8 @@ class Verifications extends Model
         'uuid' => 'string'
     ];
 
-    protected $namePerUuid = array();
     public function getPlayerName() {
-        if ($this->uuid === null || $this->uuid === "" || strrpos($this->uuid, "#", -strlen($this->uuid)) !== false) {
-            return $default_name;
-        }
-        if (array_key_exists($this->uuid, $this->namePerUuid)) return $this->namePerUuid[$uuid];
-
-        $result = "?";
-
-        $account = DB::connection("positivity")->select("SELECT * FROM negativity_accounts WHERE id = ?;", [$this->uuid]);
-        if ($account && count($account) > 0) {
-            $result = $account[0]->playername;
-        }
-
-        $this->namePerUuid[$this->uuid] = $result;
-        return $result;
+        return Setting::getPlayerName($this->uuid);
     }
 
     public function parseVersionName(){

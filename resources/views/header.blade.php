@@ -3,11 +3,13 @@
 @endpush
 
 <div class="py-3">
-    @foreach(array("accounts", "verifications") as $name)
-        <a class="" href="{{ route('positivity.' . $name) }}">
-            <div class="btn btn-primary">
-                {{ trans('positivity::messages.' . $name . '.list') }}
-            </div>
-        </a>
+    @foreach(array("accounts", "verifications", "bans", "oldbans") as $name)
+        @can($name . ".show")
+            <a class="" href="{{ route('positivity.' . $name) }}">
+                <div class="btn btn-primary">
+                    {{ trans('positivity::messages.' . $name . '.list') }}
+                </div>
+            </a>
+        @endcan
     @endforeach
 </div>

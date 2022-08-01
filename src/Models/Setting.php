@@ -87,4 +87,22 @@ class Setting extends Model
         );
         return isset($cheatPerName[$key]) ? $cheatPerName[$key] : $key . "?";
     }
+
+    protected static $namePerUuid = array();
+    public static function getPlayerName($uuid) {
+        if ($uuid === null || $uuid === "" || strrpos($uuid, "#", -strlen($uuid)) !== false) {
+            return $default_name;
+        }
+        if (array_key_exists($uuid, self::$namePerUuid)) return self::$namePerUuid[$uuid];
+
+        $result = "?";
+
+        $account = DB::connection("positivity")->select("SELECT * FROM negativity_accounts WHERE id = ?;", [$uuid]);
+        if ($account && count($account) > 0) {
+            $result = $account[0]->playername;
+        }
+
+        self::$namePerUuid[$uuid] = $result;
+        return $result;
+    }
 }

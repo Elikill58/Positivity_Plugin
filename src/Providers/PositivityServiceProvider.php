@@ -60,6 +60,8 @@ class PositivityServiceProvider extends BasePluginServiceProvider
             'positivity.admin' => 'positivity::permissions.admin',
             'positivity.accounts.show' => 'positivity::permissions.accounts.show',
             'positivity.verifications.show' => 'positivity::permissions.verifications.show',
+            'positivity.bans.show' => 'positivity::permissions.bans.show',
+            'positivity.oldbans.show' => 'positivity::permissions.oldbans.show',
         ]);
     }
 
