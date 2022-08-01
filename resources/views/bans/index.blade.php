@@ -17,50 +17,7 @@ $haveMore = count($bans) == $perPage;
                 <div class="card-body">
                     <h3>{{ trans('positivity::messages.bans.list') }}</h3>
                     <div class="table-responsive">
-                        <table class="table">
-			                <thead>
-			                <tr>
-			                    <th scope="col">{{ trans('messages.fields.name') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.bans.reason') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.bans.banned_by') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.bans.expiration_time') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.bans.cheat') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.bans.creation_time') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.more') }}</th>
-			                </tr>
-			                </thead>
-			                <tbody class="sortable" id="games">
-			                @forelse($bans as $ban)
-			                    <tr class="sortable-dropdown tag-parent" data-ban-id="{{ $ban->id }}">
-			                        <td>
-					                    {{ $ban->getPlayerName() }}
-			                        </td>
-			                        <td>
-					                    {{ $ban->reason }}
-			                        </td>
-			                        <td>
-					                    {{ $ban->banned_by }}
-			                        </td>
-			                        <td>
-					                    {{ $ban->getDateFromMillis() }}
-			                        </td>
-			                        <td>
-					                    {{ $ban->cheat_name }}
-			                        </td>
-			                        <td>
-					                    {{ $ban->execution_time }}
-			                        </td>
-			                        <td>
-					                    <a href="{{ route('positivity.bans.show', $ban->id) }}">{{ trans('positivity::messages.more') }}</a>
-			                        </td>
-			                    </tr>
-			                @empty
-			                    <tr>
-			                        <td colspan="7">{{ trans('positivity::messages.bans.empty') }}</td>
-			                    </tr>
-			                @endforelse
-			                </tbody>
-				        </table>
+                        @include('positivity::bans._table')
 			        </div>
 			    </div>
 			</div>

@@ -39,46 +39,7 @@ if(count($bans) > 0) {
 	                    </div>
 
 	                    <div class="table-responsive" style="width: 70%;">
-	                    	@if(count($bans) == 0)
-	                    		<p class="text-center">{{ trans('positivity::messages.bans.index_empty', ['name' => $name]) }}</p>
-	                    	@else
-		                        <table class="table">
-			                        <thead>
-						                <tr>
-						                    <th scope="col">{{ trans('messages.fields.name') }}</th>
-						                    <th scope="col">{{ trans('positivity::messages.bans.reason') }}</th>
-						                    <th scope="col">{{ trans('positivity::messages.bans.banned_by') }}</th>
-						                    <th scope="col">{{ trans('positivity::messages.bans.expiration_time') }}</th>
-						                    <th scope="col">{{ trans('positivity::messages.bans.cheat') }}</th>
-						                    <th scope="col">{{ trans('positivity::messages.bans.creation_time') }}</th>
-						                </tr>
-			                        </thead>
-			                        <tbody>
-				                	@foreach($bans as $ban)
-					                    <tr class="sortable-dropdown tag-parent" data-ban-id="{{ $ban->id }}">
-					                        <td>
-							                    {{ $ban->getPlayerName() }}
-					                        </td>
-					                        <td>
-							                    {{ $ban->reason }}
-					                        </td>
-					                        <td>
-							                    {{ $ban->banned_by }}
-					                        </td>
-					                        <td>
-							                    {{ $ban->getDateFromMillis() }}
-					                        </td>
-					                        <td>
-							                    {{ $ban->cheat_name }}
-					                        </td>
-					                        <td>
-							                    {{ $ban->execution_time }}
-					                        </td>
-					                    </tr>
-					                @endforeach
-			                        </tbody>
-			                    </table>
-			                @endif
+	                    	@include('positivity::bans._table', ['hideMore' => true])
 					    </div>
 	                </div>
 	            </div>

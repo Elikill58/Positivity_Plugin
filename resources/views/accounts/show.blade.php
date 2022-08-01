@@ -53,13 +53,11 @@ foreach (explode(";", $account->minerate) as $allMinerate) {
 		                        </thead>
 		                        <tbody>
 		                            <tr>
-		                            	<?php
-			                            foreach ($minerateAvailable as $mineKey) {
-			                                echo "<td>" . trans('positivity::messages.minerate.' . strtolower($mineKey)) . "</td>";
-			                                echo "<td>" . (isset($minerateArray[$mineKey]) ? $minerateArray[$mineKey] : 0) . "</td>";
-			                                echo "</tr><tr>";
-			                            }
-			                            ?>
+		                            	@foreach($minerateAvailable as $mineKey)
+			                                <td>{{ trans('positivity::messages.minerate.' . strtolower($mineKey)) }}</td>
+			                                <td>{{ (isset($minerateArray[$mineKey]) ? $minerateArray[$mineKey] : 0) }}</td>
+			                                </tr><tr>
+		                            	@endforeach
 			                            <td>{{ trans('positivity::messages.minerate.all') }}</td>
 			                            <td>{{ $account->minerate_full_mined }}</td>
 		                            </tr>
@@ -129,6 +127,20 @@ foreach (explode(";", $account->minerate) as $allMinerate) {
 	                        </tbody>
 	                    </table>
 	                </div>
+                    <div class="table-responsive">
+                    	<h3>{{ trans('positivity::messages.bans.list') }}</h3>
+                    	<?php
+                    	$bans = \Azuriom\Plugin\Positivity\Models\Bans::on("positivity")->where("id", "=", $uuid)->get();
+                    	?>
+                    	@include("positivity::bans._table", ['hideMore' => true])
+                    </div>
+                    <div class="table-responsive">
+                    	<h3>{{ trans('positivity::messages.oldbans.list') }}</h3>
+                    	<?php
+                    	$oldbans = \Azuriom\Plugin\Positivity\Models\OldBans::on("positivity")->where("id", "=", $uuid)->get();
+                    	?>
+                    	@include("positivity::oldbans._table", ['hideMore' => true])
+                    </div>
 	            </div>
 	        </div>
 	    </div>
