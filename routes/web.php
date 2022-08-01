@@ -6,6 +6,7 @@ use Azuriom\Plugin\Positivity\Controllers\VerificationsController;
 use Azuriom\Plugin\Positivity\Controllers\BansController;
 use Azuriom\Plugin\Positivity\Controllers\OldBansController;
 use Azuriom\Plugin\Positivity\Controllers\ErrorController;
+use Azuriom\Plugin\Positivity\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
-
-foreach (array("accounts" => AccountsController::class, "verifications" => VerificationsController::class, "bans" => BansController::class, "oldbans" => OldBansController::class) as $key => $value) {
+$setting = Setting::first();
+$features = array("accounts" => AccountsController::class, "verifications" => VerificationsController::class);
+if($setting->hasBans()) {
+	$features += ["bans" => BansController::class];
+	$features += ["oldbans" => OldBansController::class];
+}
+foreach ($features as $key => $value) {
 	Route::get('/' . $key, [$value, 'index'])->name($key);
 	Route::get('/'  . $key . '/{uuid?}', [$value, 'show'])->name($key . '.show');
 	Route::resource('/' . $key, $value)->except('index');

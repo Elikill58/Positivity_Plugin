@@ -40,7 +40,35 @@ class Setting extends Model
     protected $casts = [
         'per_page' => 'integer'
     ];
+    protected $hasBan = null;
+    protected $isChanged = false;
 
+    public function hasBans() {
+        $this->changeDatabase();
+        if($this->hasBan == null) {
+            $this->hasBan = count(DB::connection("positivity")->select("SELECT version FROM negativity_migrations_history WHERE subsystem LIKE ? ORDER BY version DESC", ['bans/%'])) > 0;
+        }
+        return $this->hasBan;
+    }
+
+    function isSet($smt) {
+        return isset($smt) && $smt != null && $smt != '';
+    }
+
+    public function changeDatabase() {
+        if($this->isChanged) {
+            return; // already config
+        }
+        config([
+            'database.connections.positivity.driver' => 'mysql',
+            'database.connections.positivity.host' => isSet($this->stats_host) ? $this->stats_host : env('DB_HOST', '127.0.0.1'),
+            'database.connections.positivity.port' => isSet($this->stats_port) ? $this->stats_port : env('DB_PORT', '3306'),
+            'database.connections.positivity.username' => isSet($this->stats_username) ? $this->stats_username : env('DB_USERNAME', 'root'),
+            'database.connections.positivity.password' => isSet($this->stats_password) ? $this->stats_password : env('DB_PASSWORD', ''),
+            'database.connections.positivity.database' => isSet($this->stats_database) ? $this->stats_database : env('DB_DATABASE', '')
+        ]);
+        DB::purge();
+    }
 
     public function getCheatName($key) {
         $cheatPerName = array("aimbot" => "AimBot",

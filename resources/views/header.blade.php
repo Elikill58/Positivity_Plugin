@@ -3,7 +3,13 @@
 @endpush
 
 <div class="py-3">
-    @foreach(array("accounts", "verifications", "bans", "oldbans") as $name)
+    <?php
+    $features = array("accounts", "verifications");
+    if($setting->hasBans()) {
+        array_push($features, "bans", "oldbans");
+    }
+    ?>
+    @foreach($features as $name)
         @can($name . ".show")
             <a class="" href="{{ route('positivity.' . $name) }}">
                 <div class="btn btn-primary">
