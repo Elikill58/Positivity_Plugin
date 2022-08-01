@@ -2,10 +2,10 @@
 
 namespace Azuriom\Plugin\Positivity\Models;
 
-
 use Azuriom\Models\Traits\HasTablePrefix;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Azuriom\Plugin\Positivity\Models\Verifications;
 
 /**
  * Class Account
@@ -51,5 +51,9 @@ class Accounts extends Model
             }
         }
         return $nb;
+    }
+
+    public function getVerifAmount() {
+        return count(Verifications::on("positivity")->where("uuid", "=", $this->id)->get());
     }
 }

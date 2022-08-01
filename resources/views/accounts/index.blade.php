@@ -49,10 +49,7 @@ $haveMore = count($accounts) == $perPage;
 					                    {{ $account->countAllViolation() }}
 			                        </td>
 			                        <td>
-					                    <?php
-					                    $verifResult = DB::connection("positivity")->select("SELECT count(*) as nb FROM negativity_verifications WHERE uuid = ?", [$account->id])[0];
-					                    echo $verifResult->nb;
-					                    ?>
+			                        	{{ $account->getVerifAmount() }}
 			                        </td>
 			                        <td>
 					                    {{ $account->creation_time }}
