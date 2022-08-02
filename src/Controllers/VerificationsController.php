@@ -3,7 +3,6 @@
 namespace Azuriom\Plugin\Positivity\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\Positivity\Models\Setting;
 use Azuriom\Plugin\Positivity\Models\Verifications;
 use Azuriom\Plugin\Positivity\Requests\SettingRequest;
 
@@ -18,8 +17,7 @@ class VerificationsController extends Controller
     public function index()
     {
         $this->authorize("positivity.verifications.show");
-        $setting = Setting::first();
-        return view('positivity::verifications.index', compact('setting'));
+        return view('positivity::verifications.index');
     }
 
     /**
@@ -40,8 +38,7 @@ class VerificationsController extends Controller
     public function show($uuid)
     {
         $this->authorize("positivity.verifications.show");
-        $setting = Setting::first();
-        return view('positivity::verifications.show', compact('uuid', 'setting'));
+        return view('positivity::verifications.show', compact('uuid'));
     }
 
     /**

@@ -3,19 +3,13 @@
 namespace Azuriom\Plugin\Positivity\Models;
 
 use Azuriom\Models\Traits\HasTablePrefix;
+use Azuriom\Plugin\Positivity\Utils;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Azuriom\Plugin\Positivity\Models\Setting;
 
 /**
  * Class Verifications
- *
- * @property integer        $id
- * @property string         $name
- * @property array          $settings
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
  *
  * @package Azuriom\Plugin\Positivity\Models
  */
@@ -43,7 +37,7 @@ class Verifications extends Model
     ];
 
     public function getPlayerName() {
-        return Setting::getPlayerName($this->uuid);
+        return Utils::getPlayerName($this->uuid);
     }
 
     public function parseVersionName(){

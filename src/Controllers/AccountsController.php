@@ -3,7 +3,6 @@
 namespace Azuriom\Plugin\Positivity\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\Positivity\Models\Setting;
 use Azuriom\Plugin\Positivity\Models\Accounts;
 use Azuriom\Plugin\Positivity\Requests\SettingRequest;
 
@@ -18,8 +17,7 @@ class AccountsController extends Controller
     public function index()
     {
         $this->authorize("positivity.accounts.show");
-        $setting = Setting::first();
-        return view('positivity::accounts.index', compact('setting'));
+        return view('positivity::accounts.index');
     }
 
     /**
@@ -40,8 +38,7 @@ class AccountsController extends Controller
     public function show($uuid)
     {
         $this->authorize("positivity.accounts.show");
-        $setting = Setting::first();
-        return view('positivity::accounts.show', compact('uuid', 'setting'));
+        return view('positivity::accounts.show', compact('uuid'));
     }
 
     /**

@@ -108,7 +108,7 @@ foreach (explode(";", $account->minerate) as $allMinerate) {
 	                                    $tab = explode("=", $allCheat, 2);
 	                                    foreach ($tab as $cheat) {
 	                                        if(isset($tab[1]) && !is_numeric($cheat) && $tab[1] > 0) {
-	                                            echo "<td>" . $setting->getCheatName($cheat) . "</td>";
+	                                            echo "<td>" . \Azuriom\Plugin\Positivity\Utils::getCheatName($cheat) . "</td>";
 	                                            echo "<td>$tab[1]</td>";
 	                                            $tempNb++;
 	                                            if($tempNb == 2){

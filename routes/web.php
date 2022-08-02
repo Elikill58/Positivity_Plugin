@@ -6,7 +6,6 @@ use Azuriom\Plugin\Positivity\Controllers\VerificationsController;
 use Azuriom\Plugin\Positivity\Controllers\BansController;
 use Azuriom\Plugin\Positivity\Controllers\OldBansController;
 use Azuriom\Plugin\Positivity\Controllers\ErrorController;
-use Azuriom\Plugin\Positivity\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
-$setting = Setting::first();
 $features = array("accounts" => AccountsController::class, "verifications" => VerificationsController::class);
-if($setting->hasBans()) {
+if(setting('positivity.has_bans')) {
 	$features += ["bans" => BansController::class];
 	$features += ["oldbans" => OldBansController::class];
 }

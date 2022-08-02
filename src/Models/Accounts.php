@@ -10,12 +10,6 @@ use Azuriom\Plugin\Positivity\Models\Verifications;
 /**
  * Class Account
  *
- * @property integer        $id
- * @property string         $name
- * @property array          $settings
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- *
  * @package Azuriom\Plugin\Positivity\Models
  */
 class Accounts extends Model

@@ -4,7 +4,7 @@
 
 <?php
 $page = isset(request()->page) ? request()->page - 1 : 0;
-$perPage = $setting->per_page;
+$perPage = setting('positivity.per_page');
 $verifications = \Azuriom\Plugin\Positivity\Models\Verifications::on("positivity")->limit($perPage)->offset($page * $perPage)->get();// DB::connection("positivity")->select("SELECT * FROM negativity_verifications LIMIT " . $perPage . " OFFSET " . ($page * $perPage));
 $haveMore = count($verifications) == $perPage;
 

@@ -3,7 +3,6 @@
 namespace Azuriom\Plugin\Positivity\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\Positivity\Models\Setting;
 use Azuriom\Plugin\Positivity\Models\Bans;
 use Azuriom\Plugin\Positivity\Requests\SettingRequest;
 
@@ -18,8 +17,7 @@ class BansController extends Controller
     public function index()
     {
         $this->authorize("positivity.bans.show");
-        $setting = Setting::first();
-        return view('positivity::bans.index', compact('setting'));
+        return view('positivity::bans.index');
     }
 
     /**
@@ -40,8 +38,7 @@ class BansController extends Controller
     public function show($uuid)
     {
         $this->authorize("positivity.bans.show");
-        $setting = Setting::first();
-        return view('positivity::bans.show', compact('uuid', 'setting'));
+        return view('positivity::bans.show', compact('uuid'));
     }
 
     /**

@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('can:positivity.admin')->group(function () {
     Route::get('/', [SettingController::class, 'index'])->name('index');
-    Route::resource('setting', SettingController::class)->except('index');
+    Route::post('setting', [SettingController::class, 'save'])->name('setting.update');
 });

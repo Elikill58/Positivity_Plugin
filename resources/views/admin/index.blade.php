@@ -11,9 +11,8 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
-                    <form action="{{ route('positivity.admin.setting.update', $setting) }}" name="setting-form" method="POST">
+                    <form action="{{ route('positivity.admin.setting.update', null) }}" name="setting-form" method="POST">
                         <h3>{{ trans('positivity::admin.setting.title') }}</h3>
-                        @method('PUT')
                         @include('positivity::admin._form')
                         <p id="result"></p>
                         <button class="btn btn-success" onclick="return checkDb();">

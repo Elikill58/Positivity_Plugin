@@ -3,7 +3,6 @@
 namespace Azuriom\Plugin\Positivity\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\Positivity\Models\Setting;
 
 class ErrorController extends Controller
 {
@@ -15,7 +14,6 @@ class ErrorController extends Controller
      */
     public function notFound()
     {
-        $setting = Setting::first();
-        return view('positivity::error.not-found', compact('setting'));
+        return view('positivity::error.not-found');
     }
 }

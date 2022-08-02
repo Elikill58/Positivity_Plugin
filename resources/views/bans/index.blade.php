@@ -4,7 +4,7 @@
 
 <?php
 $page = isset(request()->page) ? request()->page - 1 : 0;
-$perPage = $setting->per_page;
+$perPage = setting('positivity.per_page');
 $bans = \Azuriom\Plugin\Positivity\Models\Bans::on("positivity")->limit($perPage)->offset($page * $perPage)->get();
 $haveMore = count($bans) == $perPage;
 ?>

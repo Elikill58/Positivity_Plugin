@@ -5,7 +5,6 @@ namespace Azuriom\Plugin\Positivity\Providers;
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Azuriom\Models\Permission;
-use Azuriom\Plugin\Positivity\Models\Setting;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +19,6 @@ class PositivityServiceProvider extends BasePluginServiceProvider
     public function register()
     {
         $this->registerMiddlewares();
-
-        //
     }
 
     /**
@@ -31,29 +28,15 @@ class PositivityServiceProvider extends BasePluginServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
-
-        if (Schema::hasTable('positivity_settings') && !isset($setting)) {
-            $setting = Setting::first();
-            if (!$setting) {
-                $setting = Setting::create();
-            }
-            $setting->changeDatabase();
-        }
+        $this->changeDatabase();
 
         $this->loadViews();
 
         $this->loadTranslations();
 
-        $this->loadMigrations();
-
         $this->registerRouteDescriptions();
 
         $this->registerAdminNavigation();
-
-        Relation::morphMap([
-            'settings' => Setting::class,
-        ]);
 
         Permission::registerPermissions([
             'positivity.admin' => 'positivity::permissions.admin',
@@ -62,6 +45,19 @@ class PositivityServiceProvider extends BasePluginServiceProvider
             'positivity.bans.show' => 'positivity::permissions.bans.show',
             'positivity.oldbans.show' => 'positivity::permissions.oldbans.show',
         ]);
+    }
+
+    public function changeDatabase() {
+        $dbType = config("database.default");
+        config([
+            'database.connections.positivity.driver' => 'mysql',
+            'database.connections.positivity.host' => setting('positivity.host') ?? config("database.connections." . $dbType . ".host"),
+            'database.connections.positivity.port' => setting('positivity.port') ?? config("database.connections." . $dbType . ".port"),
+            'database.connections.positivity.username' => setting('positivity.username') ?? config("database.connections." . $dbType . ".username"),
+            'database.connections.positivity.password' => setting('positivity.password') ?? config("database.connections." . $dbType . ".password"),
+            'database.connections.positivity.database' => setting('positivity.database') ?? config("database.connections." . $dbType . ".database")
+        ]);
+        DB::purge();
     }
 
     /**

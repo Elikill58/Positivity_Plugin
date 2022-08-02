@@ -5,16 +5,10 @@ namespace Azuriom\Plugin\Positivity\Models;
 use Azuriom\Models\Traits\HasTablePrefix;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Azuriom\Plugin\Positivity\Models\Setting;
+use Azuriom\Plugin\Positivity\Utils;
 
 /**
- * Class Account
- *
- * @property integer        $id
- * @property string         $name
- * @property array          $settings
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * Class OldBans
  *
  * @package Azuriom\Plugin\Positivity\Models
  */
@@ -41,6 +35,6 @@ class OldBans extends Model
     ];
 
     public function getPlayerName() {
-        return Setting::getPlayerName($this->id);
+        return Utils::getPlayerName($this->id);
     }
 }

@@ -3,7 +3,6 @@
 namespace Azuriom\Plugin\Positivity\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\Positivity\Models\Setting;
 use Azuriom\Plugin\Positivity\Models\OldBans;
 use Azuriom\Plugin\Positivity\Requests\SettingRequest;
 
@@ -18,8 +17,7 @@ class OldBansController extends Controller
     public function index()
     {
         $this->authorize("positivity.oldbans.show");
-        $setting = Setting::first();
-        return view('positivity::oldbans.index', compact('setting'));
+        return view('positivity::oldbans.index');
     }
 
     /**
@@ -40,8 +38,7 @@ class OldBansController extends Controller
     public function show($uuid)
     {
         $this->authorize("positivity.oldbans.show");
-        $setting = Setting::first();
-        return view('positivity::oldbans.show', compact('uuid', 'setting'));
+        return view('positivity::oldbans.show', compact('uuid'));
     }
 
     /**

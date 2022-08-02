@@ -5,7 +5,7 @@
 <div class="py-3">
     <?php
     $features = array("accounts", "verifications");
-    if($setting->hasBans()) {
+    if(setting("positivity.has_bans")) {
         array_push($features, "bans", "oldbans");
     }
     ?>
