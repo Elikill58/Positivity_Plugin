@@ -8,7 +8,7 @@ If you have a question an issue or anything else that can't be applied to [issue
 
 ## What is it ?
 
-It's the version of [Positivity](https://github.com/Elikill58/Positivity) but adapted for [Azuriom](https://azuriom.com).
+It's the version of [Positivity](https://github.com/Elikill58/Positivity) but adapted for [Azuriom](https://market.azuriom.com/resources/84).
 
 It allow users to manage Negativity's informations.
 
