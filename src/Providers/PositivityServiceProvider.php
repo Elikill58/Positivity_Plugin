@@ -5,9 +5,6 @@ namespace Azuriom\Plugin\Positivity\Providers;
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Azuriom\Models\Permission;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 class PositivityServiceProvider extends BasePluginServiceProvider
 {
@@ -57,7 +54,6 @@ class PositivityServiceProvider extends BasePluginServiceProvider
             'database.connections.positivity.password' => setting('positivity.password') ?? config("database.connections." . $dbType . ".password"),
             'database.connections.positivity.database' => setting('positivity.database') ?? config("database.connections." . $dbType . ".database")
         ]);
-        DB::purge();
     }
 
     /**
