@@ -6,6 +6,7 @@ use Azuriom\Models\Traits\HasTablePrefix;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Azuriom\Plugin\Positivity\Models\Setting;
+use Carbon\Carbon;
 
 /**
  * Class Account
@@ -47,6 +48,6 @@ class Bans extends Model
     public function getDateFromMillis() {
         if(!isset($this->expiration_time) || $this->expiration_time == null || $this->expiration_time <= 0)
             return trans("positivity::messages.never");
-        return strftime("%B %d, %Y, %H:%M", $this->expiration_time / 1000);
+        return format_date(Carbon::createFromTimestamp($this->expiration_time / 1000));
     }
 }
