@@ -16,11 +16,6 @@ return [
         'coal_ore' => 'Coal ore',
         'ancient_debris' => 'Ancient debris',
     ],
-    'page' => [
-        'next' => ' ⮚',
-        'previous' => '⮘ ',
-        'info' => 'Page: :page',
-    ],
     'accounts' => [
         'index' => 'Account of :name',
         'list' => 'Accounts',

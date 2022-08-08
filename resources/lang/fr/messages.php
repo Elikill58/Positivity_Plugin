@@ -16,11 +16,6 @@ return [
         'coal_ore' => 'Minerais de charbon',
         'ancient_debris' => 'Débris antique',
     ],
-    'page' => [
-        'next' => ' ⮚',
-        'previous' => '⮘ ',
-        'info' => 'Page: :page',
-    ],
     'accounts' => [
         'index' => 'Compte de :name',
         'list' => 'Comptes',
