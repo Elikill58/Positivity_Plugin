@@ -35,6 +35,7 @@ return [
     'verifications' => [
         'index' => 'Verification',
         'list' => 'Verifications',
+        'empty' => 'Il n\'y a aucune vérification.',
         'started_by' => 'Démarré par',
         'player_version' => 'Version du joueur'
     ],

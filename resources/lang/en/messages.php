@@ -35,6 +35,7 @@ return [
     'verifications' => [
         'index' => 'Verification',
         'list' => 'Verifications',
+        'empty' => 'There isn\'t any verifications.',
         'started_by' => 'Started by',
         'player_version' => 'Version of player'
     ],
