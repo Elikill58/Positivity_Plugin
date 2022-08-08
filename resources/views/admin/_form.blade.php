@@ -45,7 +45,7 @@
         </div>
         <div class="form-right">
             <label class="form-label" for="dbInput">{{ trans('install.database.password') }}¹</label>
-            <input type="text" class="form-control @error('password') is-invalid @enderror" id="dbInput"
+            <input type="password" class="form-control @error('password') is-invalid @enderror" id="dbInput"
                    name="password"
                    value="{{ setting('positivity.password') }}">
 
