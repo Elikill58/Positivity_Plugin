@@ -19,7 +19,7 @@
         <tbody class="sortable" id="games">
             @foreach($accounts as $account)
                 <tr class="sortable-dropdown tag-parent" data-account-id="{{ $account->id }}">
-                    <td>
+                    <td scope="row">
                         {{ $account->playername }}
                     </td>
                     <td>
@@ -49,4 +49,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $pagination->links() }}
 @endif

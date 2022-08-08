@@ -6,7 +6,7 @@
 $page = isset(request()->page) ? request()->page - 1 : 0;
 $perPage = setting('positivity.per_page');
 $oldbans = \Azuriom\Plugin\Positivity\Models\OldBans::on("positivity")->limit($perPage)->offset($page * $perPage)->get();
-$haveMore = count($oldbans) == $perPage;
+$pagination = \Azuriom\Plugin\Positivity\Models\OldBans::on("positivity")->paginate($perPage);
 ?>
 
 @section('content')
@@ -21,7 +21,6 @@ $haveMore = count($oldbans) == $perPage;
 			        </div>
 			    </div>
 			</div>
-			@include("positivity::pager")
 		</div>
     </div>
 @endsection

@@ -6,7 +6,7 @@
 $page = isset(request()->page) ? request()->page - 1 : 0;
 $perPage = setting('positivity.per_page');
 $accounts = \Azuriom\Plugin\Positivity\Models\Accounts::on("positivity")->limit($perPage)->offset($page * $perPage)->get();
-$haveMore = count($accounts) == $perPage;
+$pagination = \Azuriom\Plugin\Positivity\Models\Accounts::on("positivity")->paginate($perPage);
 ?>
 
 @section('content')
@@ -21,7 +21,6 @@ $haveMore = count($accounts) == $perPage;
 			        </div>
 			    </div>
 			</div>
-			@include("positivity::pager")
 		</div>
     </div>
 @endsection

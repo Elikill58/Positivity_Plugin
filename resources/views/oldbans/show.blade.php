@@ -17,6 +17,7 @@ if(count($oldbans) > 0) {
 	else
 		$name = "?";
 }
+$pagination = \Azuriom\Plugin\Positivity\Models\OldBans::on("positivity")->where("id", "=", $uuid)->paginate(setting('positivity.per_page'));
 
 ?>
 
@@ -30,14 +31,17 @@ if(count($oldbans) > 0) {
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
-                    <div class="text-center" style="padding-bottom: 1.5rem;">
-                		<h3>{{ trans('positivity::messages.oldbans.index', ['name' => $name]) }}</h3>
-                    	<img src="https://crafatar.com/avatars/{{ $uuid }}">
-                    </div>
+                	<div style="display: flex;">
+	                    <div class="text-center" style="width: 30%;">
+	                		<h3>{{ trans('positivity::messages.oldbans.index', ['name' => $name]) }}</h3>
+	                    	<img src="https://crafatar.com/avatars/{{ $uuid }}">
+	                		<a href="{{ route('positivity.accounts.show', $uuid) }}" class="btn btn-primary my-3">{{ trans('positivity::messages.accounts.see') }}</a>
+	                    </div>
 
-                    <div class="table-responsive">
-                        @include('positivity::oldbans._table', ['hideMore' => true])
-				    </div>
+	                    <div class="table-responsive" style="width: 70%;">
+                        	@include('positivity::oldbans._table', ['hideMore' => true])
+					    </div>
+	                </div>
 	            </div>
 	        </div>
 	    </div>

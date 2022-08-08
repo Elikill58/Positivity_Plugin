@@ -131,6 +131,7 @@ foreach (explode(";", $account->minerate) as $allMinerate) {
                     	<h3>{{ trans('positivity::messages.bans.list') }}</h3>
                     	<?php
                     	$bans = \Azuriom\Plugin\Positivity\Models\Bans::on("positivity")->where("id", "=", $uuid)->get();
+                    	$pagination = \Azuriom\Plugin\Positivity\Models\Bans::on("positivity")->where("id", "=", $uuid)->paginate(setting('positivity.per_page'));
                     	?>
                     	@include("positivity::bans._table", ['hideMore' => true])
                     </div>
@@ -138,6 +139,7 @@ foreach (explode(";", $account->minerate) as $allMinerate) {
                     	<h3>{{ trans('positivity::messages.oldbans.list') }}</h3>
                     	<?php
                     	$oldbans = \Azuriom\Plugin\Positivity\Models\OldBans::on("positivity")->where("id", "=", $uuid)->get();
+                    	$pagination = \Azuriom\Plugin\Positivity\Models\OldBans::on("positivity")->where("id", "=", $uuid)->paginate(setting('positivity.per_page'));
                     	?>
                     	@include("positivity::oldbans._table", ['hideMore' => true])
                     </div>

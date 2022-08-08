@@ -5,8 +5,8 @@
 <?php
 $page = isset(request()->page) ? request()->page - 1 : 0;
 $perPage = setting('positivity.per_page');
-$verifications = \Azuriom\Plugin\Positivity\Models\Verifications::on("positivity")->limit($perPage)->offset($page * $perPage)->get();// DB::connection("positivity")->select("SELECT * FROM negativity_verifications LIMIT " . $perPage . " OFFSET " . ($page * $perPage));
-$haveMore = count($verifications) == $perPage;
+$verifications = \Azuriom\Plugin\Positivity\Models\Verifications::on("positivity")->limit($perPage)->offset($page * $perPage)->get();
+$pagination = \Azuriom\Plugin\Positivity\Models\Verifications::on("positivity")->paginate($perPage);
 
 $namePerUuid = array();
 ?>
@@ -55,10 +55,10 @@ $namePerUuid = array();
 			                @endforelse
 			                </tbody>
 				        </table>
+				        {{ $pagination->links() }}
 			        </div>
 			    </div>
 			</div>
-			@include("positivity::pager")
 		</div>
     </div>
 @endsection

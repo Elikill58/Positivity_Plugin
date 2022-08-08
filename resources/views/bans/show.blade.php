@@ -17,6 +17,7 @@ if(count($bans) > 0) {
 	else
 		$name = "?";
 }
+$pagination = \Azuriom\Plugin\Positivity\Models\Bans::on("positivity")->where("id", "=", $uuid)->paginate(setting('positivity.per_page'));
 
 
 ?>

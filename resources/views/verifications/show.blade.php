@@ -8,7 +8,6 @@ if($result) {
     <?php
     exit();
 }
-
 ?>
 
 @extends('layouts.app')
