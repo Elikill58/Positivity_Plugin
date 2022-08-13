@@ -25,7 +25,7 @@ $namePerUuid = array();
 			                    <th scope="col">{{ trans('messages.fields.name') }}</th>
 			                    <th scope="col">{{ trans('positivity::messages.verifications.started_by') }}</th>
 			                    <th scope="col">{{ trans('positivity::messages.verifications.player_version') }}</th>
-			                    <th scope="col">{{ trans('positivity::messages.created_at') }}</th>
+			                    <th scope="col" class="mobile-disabled">{{ trans('positivity::messages.created_at') }}</th>
 			                    <th scope="col">{{ trans('positivity::messages.more') }}</th>
 			                </tr>
 			                </thead>
@@ -41,7 +41,7 @@ $namePerUuid = array();
 			                        <td>
 					                    {{ $verif->parseVersionName() }}
 			                        </td>
-			                        <td>
+			                        <td class="mobile-disabled">
 					                    {{ $verif->creation_time }}
 			                        </td>
 			                        <td>

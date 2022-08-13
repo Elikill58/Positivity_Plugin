@@ -5,12 +5,12 @@
         <thead>
             <tr>
                 <th scope="col">{{ trans('messages.fields.name') }}</th>
-                <th scope="col">{{ trans('positivity::messages.accounts.lang') }}</th>
+                <th scope="col" class="mobile-disabled">{{ trans('positivity::messages.accounts.lang') }}</th>
                 <th scope="col">{{ trans('positivity::messages.accounts.mined') }}</th>
                 <th scope="col">{{ trans('positivity::messages.accounts.most_clicks') }}</th>
                 <th scope="col">{{ trans('positivity::messages.accounts.violations') }}</th>
                 <th scope="col">{{ trans('positivity::messages.accounts.verifications') }}</th>
-                <th scope="col">{{ trans('positivity::messages.created_at') }}</th>
+                <th scope="col" class="mobile-disabled">{{ trans('positivity::messages.created_at') }}</th>
                 @if(!isset($hideMore) || !$hideMore)
                     <th scope="col">{{ trans('positivity::messages.more') }}</th>
                 @endif
@@ -22,7 +22,7 @@
                     <td scope="row">
                         {{ $account->playername }}
                     </td>
-                    <td>
+                    <td class="mobile-disabled">
                         {{ $account->language }}
                     </td>
                     <td>
@@ -37,7 +37,7 @@
                     <td>
                     	{{ $account->getVerifAmount() }}
                     </td>
-                    <td>
+                    <td class="mobile-disabled">
                         {{ $account->creation_time }}
                     </td>
                     @if(!isset($hideMore) || !$hideMore)

@@ -7,7 +7,7 @@
 		        <th scope="col">{{ trans('messages.fields.name') }}</th>
 		        <th scope="col">{{ trans('positivity::messages.bans.reason') }}</th>
 		        <th scope="col">{{ trans('positivity::messages.bans.banned_by') }}</th>
-		        <th scope="col">{{ trans('positivity::messages.bans.cheat') }}</th>
+		        <th scope="col" class="mobile-disabled">{{ trans('positivity::messages.bans.cheat') }}</th>
 		        <th scope="col">{{ trans('positivity::messages.bans.creation_time') }}</th>
 		        <th scope="col">{{ trans('positivity::messages.bans.expiration_time') }}</th>
                 @if(!isset($hideMore) || !$hideMore)
@@ -27,7 +27,7 @@
 		            <td>
 		                {{ $ban->banned_by }}
 		            </td>
-		            <td>
+		            <td class="mobile-disabled">
 		                {{ $ban->cheat_name }}
 		            </td>
 		            <td>

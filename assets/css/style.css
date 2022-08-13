@@ -11,6 +11,11 @@
         display: flex;
     }
 }
+@media screen and (max-width: 992px) {
+    .mobile-disabled {
+        display: none;
+    }
+}
 .banner-search {
     display: flex;
     margin-left: auto;
