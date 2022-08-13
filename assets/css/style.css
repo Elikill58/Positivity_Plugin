@@ -6,3 +6,15 @@
     width: 50%;
     padding-right: 1%;
 }
+@media screen and (min-width: 992px) {
+    .banner {
+        display: flex;
+    }
+}
+.banner-search {
+    display: flex;
+    margin-left: auto;
+}
+.banner-search .form-control {
+    max-width: max-content;
+}
