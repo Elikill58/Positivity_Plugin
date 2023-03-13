@@ -30,18 +30,13 @@ class SettingController extends Controller
             'password' => ['nullable', 'string'],
             'database' => ['nullable', 'string'],
         ]);
-        $hasBans = false;
-        try {
-            $hasBans = count(DB::connection("positivity")->select("SELECT version FROM negativity_migrations_history WHERE subsystem LIKE ? ORDER BY version DESC", ['bans/%'])) > 0;
-        } catch (\Exception $e) {} // don't have ban, but seems to wrongly config db
         Setting::updateSettings([
             'positivity.per_page' => $request->input('per_page'),
             'positivity.host' => $request->input('host'),
             'positivity.port' => $request->input('port'),
             'positivity.username' => $request->input('username'),
             'positivity.password' => $request->input('password'),
-            'positivity.database' => $request->input('database'),
-            'positivity.has_bans' => $hasBans,
+            'positivity.database' => $request->input('database')
         ]);
 
         return redirect()->route('positivity.admin.index')->with('success', trans('positivity::admin.setting.updated'));

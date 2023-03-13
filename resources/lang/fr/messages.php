@@ -56,6 +56,16 @@ return [
         'cheat' => 'Cheat',
         'creation_time' => 'Date de banissement',
     ],
+    'warns' => [
+        'index' => 'Avertissements de :name',
+        'list' => 'Avertissements',
+        'empty' => 'Il n\'y a aucun ancien avertissement.',
+        'index_empty' => ':name n\'a jamais été averti.',
+        'reason' => 'Raison',
+        'warned_by' => 'Averti par',
+        'revocation_time' => 'Date de révocation',
+        'creation_time' => 'Date de banissement',
+    ],
     'error' => [
         'not-found' => 'Demande introuvable.',
     ]

@@ -15,6 +15,7 @@ class PositivityServiceProvider extends BasePluginServiceProvider
      */
     public function register()
     {
+
         $this->registerMiddlewares();
     }
 
@@ -41,6 +42,7 @@ class PositivityServiceProvider extends BasePluginServiceProvider
             'positivity.verifications.show' => 'positivity::permissions.verifications.show',
             'positivity.bans.show' => 'positivity::permissions.bans.show',
             'positivity.oldbans.show' => 'positivity::permissions.oldbans.show',
+            'positivity.warns.show' => 'positivity::permissions.warns.show',
         ]);
     }
 

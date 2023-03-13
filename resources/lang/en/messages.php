@@ -56,6 +56,16 @@ return [
         'cheat' => 'Cheat',
         'creation_time' => 'Ban date',
     ],
+    'warns' => [
+        'index' => 'Warns of :name',
+        'list' => 'Warns',
+        'empty' => 'There isn\'t any warn.',
+        'index_empty' => ':name has never been warned.',
+        'reason' => 'Reason',
+        'warned_by' => 'Warned by',
+        'revocation_time' => 'Revocation date',
+        'creation_time' => 'Ban date',
+    ],
     'error' => [
         'not-found' => 'Cannot find request.',
     ]

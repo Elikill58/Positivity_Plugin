@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 class Utils {
 
     protected static $namePerUuid = array();
-    protected static $cheatPerName = array("aimbot" => "AimBot",
+    protected static $cheatPerName = array(
+        "aimbot" => "AimBot",
         "airjump" => "AirJump",
         "airplace" => "AirPlace",
         "antiknockback" => "AntiKnockback",

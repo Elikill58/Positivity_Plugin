@@ -5,6 +5,7 @@ use Azuriom\Plugin\Positivity\Controllers\AccountsController;
 use Azuriom\Plugin\Positivity\Controllers\VerificationsController;
 use Azuriom\Plugin\Positivity\Controllers\BansController;
 use Azuriom\Plugin\Positivity\Controllers\OldBansController;
+use Azuriom\Plugin\Positivity\Controllers\WarnsController;
 use Azuriom\Plugin\Positivity\Controllers\ErrorController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +23,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 $features = array("accounts" => AccountsController::class, "verifications" => VerificationsController::class);
-if(setting('positivity.has_bans')) {
-	$features += ["bans" => BansController::class];
-	$features += ["oldbans" => OldBansController::class];
-}
+
+$features += ["bans" => BansController::class];
+$features += ["oldbans" => OldBansController::class];
+$features += ["warns" => WarnsController::class];
+/*
+$migrationVersions = DB::connection("positivity")->select("SELECT version, subsystem FROM negativity_migrations_history GROUP BY version ORDER BY version DESC");
+foreach($migrationVersions as $row) {
+	if($row->subsystem == "bans/active" && $row->version > 0)
+		$features += ["bans" => BansController::class];
+	else if($row->subsystem == "bans/logs" && $row->version > 0)
+		$features += ["oldbans" => OldBansController::class];
+	else if($row->subsystem == "warns" && $row->version >= 0)
+		$features += ["warns" => WarnsController::class];
+}*/
 foreach ($features as $key => $value) {
 	Route::get('/' . $key, [$value, 'index'])->name($key);
 	Route::get('/'  . $key . '/{uuid?}', [$value, 'show'])->name($key . '.show');

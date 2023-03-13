@@ -5,8 +5,14 @@
 <div class="py-3 banner">
     <?php
     $features = array("accounts", "verifications");
-    if(setting("positivity.has_bans")) {
-        array_push($features, "bans", "oldbans");
+    $migrationVersions = DB::connection("positivity")->select("SELECT version, subsystem FROM negativity_migrations_history GROUP BY subsystem ORDER BY version DESC");
+    foreach($migrationVersions as $row) {
+        if($row->subsystem == "bans/active" && $row->version >= 0)
+            array_push($features, "bans");
+        else if($row->subsystem == "bans/logs" && $row->version >= 0)
+            array_push($features, "oldbans");
+        else if($row->subsystem == "warns" && $row->version >= 0)
+            array_push($features, "warns");
     }
     ?>
     @foreach($features as $name)
