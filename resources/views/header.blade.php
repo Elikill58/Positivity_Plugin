@@ -5,13 +5,13 @@
 <div class="py-3 banner">
     <?php
     $features = array("accounts", "verifications");
-    $migrationVersions = DB::connection("positivity")->select("SELECT version, subsystem FROM negativity_migrations_history GROUP BY subsystem ORDER BY version DESC");
+    $migrationVersions = DB::connection("positivity")->select("SELECT subsystem FROM negativity_migrations_history GROUP BY subsystem");
     foreach($migrationVersions as $row) {
-        if($row->subsystem == "bans/active" && $row->version >= 0)
+        if($row->subsystem == "bans/active")
             array_push($features, "bans");
-        else if($row->subsystem == "bans/logs" && $row->version >= 0)
+        else if($row->subsystem == "bans/logs")
             array_push($features, "oldbans");
-        else if($row->subsystem == "warns" && $row->version >= 0)
+        else if($row->subsystem == "warns")
             array_push($features, "warns");
     }
     ?>
