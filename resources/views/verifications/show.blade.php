@@ -1,3 +1,5 @@
+@include("positivity::_database")
+
 <?php
 $result = \Azuriom\Plugin\Positivity\Models\Verifications::on("positivity")->where("id", "=", $uuid)->first();
 if($result) {

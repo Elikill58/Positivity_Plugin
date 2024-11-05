@@ -1,3 +1,5 @@
+@include("positivity::_database")
+
 @extends('layouts.app')
 
 @section('title', 'Stats')

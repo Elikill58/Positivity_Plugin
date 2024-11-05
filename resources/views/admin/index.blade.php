@@ -1,3 +1,5 @@
+@include("positivity::_database")
+
 @extends('admin.layouts.admin')
 
 @section('title', trans('positivity::admin.setting.title'))

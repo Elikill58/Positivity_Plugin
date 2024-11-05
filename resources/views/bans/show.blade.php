@@ -1,3 +1,5 @@
+@include("positivity::_database")
+
 <?php
 $bans = \Azuriom\Plugin\Positivity\Models\Bans::on("positivity")->where("id", "=", $uuid)->get();
 if(isset($bans)) {
